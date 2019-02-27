@@ -23,7 +23,7 @@
                        <td>
                            <img height="50" src="{{$user->photo ? asset($user->photo->file) :'http://place-hold.it/400x400'}}" alt="">
                        </td>
-                       <td>{{$user->name}}</td>
+                       <td><a href="{{route('users.edit', $user->id)}}">{{$user->name}}</a></td>
                        <td>{{$user->email}}</td>
                        <td>{{$user->role_id ? $user->role->name : 'User without role'}}</td>
                        <td>{{$user->is_active == 1 ? 'Active' : 'Not Active'}}</td>
