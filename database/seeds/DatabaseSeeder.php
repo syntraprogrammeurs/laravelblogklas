@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -9,9 +10,17 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+    protected $toTruncate = ['posts'];
     public function run()
     {
-        $this->call(UsersTableSeeder::class);
-        $this->call(RolesTableSeeder::class);
+        //$this->call(UsersTableSeeder::class);
+        //$this->call(RolesTableSeeder::class);
+
+        foreach($this->toTruncate as $table){
+            DB::table('Posts')->truncate();
+
+        }
+
+        $this->call(PostsTableSeeder::class);
     }
 }

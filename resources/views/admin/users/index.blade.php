@@ -15,7 +15,6 @@
         </tr>
         </thead>
         <tbody>
-
            @if ($users)
                @foreach($users as $user)
                    <tr>
@@ -32,10 +31,6 @@
                    </tr>
                @endforeach
            @endif
-
-
-
-
         </tbody>
     </table>
 @stop

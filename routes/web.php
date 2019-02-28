@@ -11,14 +11,22 @@
 |
 */
 
+/**FRONTEND***/
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 
 Auth::routes();
 
 
 /***BACKEND ROUTES***/
-Route::get('/admin','HomeController@index');
+Route::group(['middleware'=>'admin'],function(){
+    Route::get('/admin','HomeController@index');
+    Route::resource('/admin/users','AdminUsersController');
+    Route::resource('/admin/posts','AdminPostsController');
+});
 
-Route::resource('/admin/users','AdminUsersController');
+
+
