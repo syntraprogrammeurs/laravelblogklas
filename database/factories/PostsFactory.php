@@ -6,10 +6,10 @@ use Faker\Generator as Faker;
 
 
 $factory->define(Post::class, function (Faker $faker) {
-    $users = User::pluck('id')->toArray();
+    //$users = User::pluck('id')->toArray();
     return [
         //
-        'user_id' => $faker->randomElement($users),
+        'user_id' => $faker->numberBetween($min=1, $max=3),//$faker->randomElement($users),
         'category_id'=> $faker->numberBetween($min=1, $max=3),
         'photo_id'=> $faker->numberBetween($min=1, $max=3),
         'title'=> $faker->sentence(6, true),
