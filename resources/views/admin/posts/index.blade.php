@@ -25,8 +25,8 @@
                     <td>
                         <img height="50" src="{{$post->photo ? asset($post->photo->file) :'http://place-hold.it/400x400'}}" alt="">
                     </td>
-                    <td>{{$post->user->name}}</td>
-                    <td>{{$post->category->name}}</td>
+                    <td><a href="{{route('posts.edit', $post->id)}}">{{$post->user->name}}</a></td>
+                    <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->body}}</td>
                     <td>Post link</td>

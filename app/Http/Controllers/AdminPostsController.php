@@ -80,6 +80,9 @@ class AdminPostsController extends Controller
     public function edit($id)
     {
         //
+        $post = Post::findOrFail($id);
+        $categories = Category::pluck('name','id')->all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -92,6 +95,28 @@ class AdminPostsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input= $request->all();
+
+        if($file = $request->file('photo_id')){
+            $name = time() . $file->getClientOriginalName();
+            $file->move('images', $name);
+            $photo = Photo::create(['file'=>$name]);
+            $input['photo_id'] = $photo->id;
+        }
+
+        //een administrator kan alle posts updaten.
+        $testAdmin = Auth::user();
+        if($testAdmin->isAdmin()){
+            $post = Post::findOrFail($id);
+            $post->update($input);
+        }else{
+            //berichtmelding
+        }
+
+        //auth user. Enkel de user zelf kan zijn eigen posts wijzigen.
+        //met een andere ingelogde user krijg je een error.
+        //Auth::user()->posts()->whereId($id)->first()->update($input);
+        return redirect('/admin/posts');
     }
 
     /**
@@ -103,5 +128,9 @@ class AdminPostsController extends Controller
     public function destroy($id)
     {
         //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        unlink(public_path() . $post->photo->file);
+        return redirect('/admin/posts');
     }
 }
