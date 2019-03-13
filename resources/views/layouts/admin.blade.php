@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-
+    @yield('styles')
 </head>
 
 <body>
@@ -322,6 +322,20 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+                    <li>
+                        <a href="#"><i class="fa fa-arrow-circle-up"></i> Media<span
+                                class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('medias.index')}}">All Media</a>
+                            </li>
+                            <li>
+                                <a href="{{route('medias.create')}}">Upload Media</a>
+                            </li>
+
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
 
                 </ul>
             </div>
@@ -439,7 +453,7 @@
 
 <!-- jQuery -->
 <script src="{{asset('js/jquery.min.js')}}"></script>
-
+@yield('scripts')
 
 <!-- Bootstrap Core JavaScript -->
 <script src="{{asset('js/bootstrap.min.js')}}"></script>

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-Use Carbon\Carbon;
-use App\Category;
+use App\Photo;
 use Illuminate\Http\Request;
 
-class AdminCategoriesController extends Controller
+class AdminMediasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,6 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         //
-        $categories = Category::all();
-        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -28,25 +25,28 @@ class AdminCategoriesController extends Controller
     public function create()
     {
         //
+        return view('admin.medias.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         //
-        Category::create($request->all());
-        return redirect('/admin/categories');
+        $file = $request->file('file');
+        $name= time() . $file->getClientOriginalName();
+        $file->move('images', $name);
+        Photo::create(['file'=>$name]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -57,45 +57,34 @@ class AdminCategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $category = Category::findOrFail($id);
-        return view('admin.categories.edit', compact('category'));
-
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
-        $category = Category::findOrFail($id);//record uit database halen
-        $category->update($request->all());// overschrijven van ditzelfde record in database met waarden uit het
-        // formulier
-        return redirect('/admin/categories');
-
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        $category = Category::findOrFail($id);//record uit database halen
-        $category->delete();
-        return redirect('/admin/categories');
     }
 }
