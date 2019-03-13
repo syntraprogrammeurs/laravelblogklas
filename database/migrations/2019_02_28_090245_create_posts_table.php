@@ -21,6 +21,8 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->timestamps();
+            //trigger op een tabel toevoegen
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
