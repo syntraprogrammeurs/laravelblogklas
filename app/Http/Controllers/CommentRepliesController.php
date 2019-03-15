@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Photo;
+use App\CommentReply;
 use Illuminate\Http\Request;
 
-class AdminMediasController extends Controller
+class CommentRepliesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +25,6 @@ class AdminMediasController extends Controller
     public function create()
     {
         //
-        return view('admin.medias.create');
     }
 
     /**
@@ -37,32 +36,26 @@ class AdminMediasController extends Controller
     public function store(Request $request)
     {
         //
-        $file = $request->file('file');
-        $name= time() . $file->getClientOriginalName();
-        $file->move('images', $name);
-        Photo::create(['file'=>$name]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\CommentReply  $commentReplies
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(CommentReply $commentReplies)
     {
         //
-
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\CommentReply  $commentReplies
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CommentReply $commentReplies)
     {
         //
     }
@@ -71,10 +64,10 @@ class AdminMediasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\CommentReply  $commentReplies
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CommentReply $commentReplies)
     {
         //
     }
@@ -82,10 +75,10 @@ class AdminMediasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\CommentReply  $commentReplies
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CommentReply $commentReplies)
     {
         //
     }
