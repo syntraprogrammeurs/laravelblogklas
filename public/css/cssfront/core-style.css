@@ -30,13 +30,13 @@
 :: 2.0 Import All CSS
 ------------------ */
 
-@import '../css/bootstrap.min.css';
-@import '../css/owl.carousel.css';
-@import '../css/font-awesome.min.css';
-@import '../css/pe-icon-7-stroke.css';
-@import '../css/magnific-popup.css';
-@import '../css/animate.css';
-@import '../css/jquery-ui.min.css';
+@import 'bootstrap.min.css';
+@import 'owl.carousel.css';
+@import 'font-awesome.min.css';
+@import 'pe-icon-7-stroke.css';
+@import 'magnific-popup.css';
+@import 'animate.css';
+@import 'jquery-ui.min.css';
 
 /* -------------------
 :: 3.0 Common/Base CSS

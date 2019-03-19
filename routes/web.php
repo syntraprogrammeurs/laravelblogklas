@@ -15,6 +15,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/post/{id}', ['as' =>'home.post', 'uses'=>'AdminPostsController@post']);
 
 
 

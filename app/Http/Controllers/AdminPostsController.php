@@ -9,6 +9,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\Auth;
+use Carbon;
 
 class AdminPostsController extends Controller
 {
@@ -132,5 +133,10 @@ class AdminPostsController extends Controller
         $post->delete();
         unlink(public_path() . $post->photo->file);
         return redirect('/admin/posts');
+    }
+
+    public function post($id){
+        $post = Post::findOrFail($id);
+        return view('post', compact('post'));
     }
 }
