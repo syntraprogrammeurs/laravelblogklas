@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class PostComment extends Model
 {
     //
@@ -17,5 +17,9 @@ class PostComment extends Model
 
     public function replies(){
         return $this->hasMany('App\CommentReply');
+    }
+
+    public function post(){
+        return $this->belongsTo('App\Post');
     }
 }

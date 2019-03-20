@@ -4,12 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 class Post extends Model
 {
     //
+    use Sluggable;
+    use SluggableScopeHelpers;
     protected $fillable = [
-        'title','body','user_id','category_id','photo_id'
+        'title','body','user_id','category_id','photo_id','slug'
     ];
 
     public function user(){
@@ -23,5 +27,13 @@ class Post extends Model
     }
     public function comments(){
         return $this->hasMany('App\PostComment');
+    }
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
